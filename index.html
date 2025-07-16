@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <div class="container" id="loginScreen">
+        <div class="heading">LOGIN</div>
+        <form id="loginForm" class="form">
+            <select class="input" name="tipoIdentificacion" id="loginTipoId" required>
+                <option value="">Tipo de identificación</option>
+                <option value="CC">C.C</option>
+                <option value="TI">T.I</option>
+                <option value="PP">P.P</option>
+                <option value="CE">C.E</option>
+            </select>
+            <input required class="input" type="number" name="numeroId" id="loginNumeroId" placeholder="Número de identificación">
+            <input required class="input" type="password" name="password" id="loginPassword" placeholder="Contraseña">
+            <span class="forgot-password" id="forgotPasswordLink">¿Olvidaste tu Contraseña?</span>
+            <button class="login-button" type="submit">INICIAR SESIÓN</button>
+            <button type="button" class="login-button" id="createAccountBtn">CREAR CUENTA</button>
+        </form>
+        <div id="loginMessage"></div>
+    </div>
+
+    <!-- Pantalla de Registro -->
+    <div class="container hidden" id="registrationScreen">
+        <div class="heading">REGISTRO</div>
+        <form id="registrationForm" class="form">
+            <select class="input" name="tipoIdentificacion" id="regTipoId" required>
+                <option value="">Tipo de identificación</option>
+                <option value="CC">C.C</option>
+                <option value="TI">T.I</option>
+                <option value="PP">P.P</option>
+                <option value="CE">C.E</option>
+            </select>
+            <input required class="input" type="number" name="numeroId" id="regNumeroId" placeholder="Número de identificación">
+            <input required type="text" class="input" name="nombres" id="regNombres" placeholder="Nombres">
+            <input required type="text" class="input" name="apellidos" id="regApellidos" placeholder="Apellidos">
+            <select class="input" name="genero" id="regGenero" required>
+                <option value="">Género</option>
+                <option value="Masculino">Masculino</option>
+                <option value="Femenino">Femenino</option>
+                <option value="Otro">Otro</option>
+            </select>
+            <input type="number" required class="input" id="regTelefono" placeholder="Teléfono">
+            <input type="email" required class="input" id="regEmail" placeholder="E-mail">
+            <input type="text" required class="input" id="regDireccion" placeholder="Dirección">
+            <input type="text" required class="input" id="regCiudad" placeholder="Ciudad de residencia">
+            <input required class="input" type="password" name="password" id="regPassword" placeholder="Contraseña">
+            <button class="login-button" type="submit">REGISTRAR</button>
+            <button type="button" class="login-button" id="cancelRegBtn">CANCELAR</button>
+        </form>
+        <div id="registrationMessage"></div>
+    </div>
+
+    <!-- Pantalla de Recuperar Contraseña -->
+    <div class="container hidden" id="recoveryScreen">
+        <div class="heading">RECUPERAR CONTRASEÑA</div>
+        <form id="recoveryForm" class="form">
+            <select class="input" name="tipoIdentificacion" id="recTipoId" required>
+                <option value="">Tipo de identificación</option>
+                <option value="CC">C.C</option>
+                <option value="TI">T.I</option>
+                <option value="PP">P.P</option>
+                <option value="CE">C.E</option>
+            </select>
+            <input required class="input" type="number" name="numeroId" id="recNumeroId" placeholder="Número de identificación">
+            <input type="email" required class="input" id="recEmail" placeholder="E-mail">
+            <button class="login-button" type="submit">RECUPERAR</button>
+            <button type="button" class="login-button" id="cancelRecBtn">CANCELAR</button>
+        </form>
+        <div id="recoveryMessage"></div>
+    </div>
+
+    <!-- Pantalla de Nueva Contraseña -->
+    <div class="container hidden" id="newPasswordScreen">
+        <div class="heading">NUEVA CONTRASEÑA</div>
+        <form id="newPasswordForm" class="form">
+            <input required class="input" type="password" name="newPassword" id="newPassword" placeholder="Nueva Contraseña">
+            <input required class="input" type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirmar Contraseña">
+            <button class="login-button" type="submit">GUARDAR</button>
+            <button type="button" class="login-button" id="cancelNewPassBtn">CANCELAR</button>
+        </form>
+        <div id="newPasswordMessage"></div>
+    </div>
+
+    <!-- Dashboard Principal -->
+    <main class="container-prin hidden" id="dashboardScreen">
+        <div class="heading">RESUMEN DE CUENTA</div>
+        <div class="form-prin">
+            <p><strong>Número de Cuenta:</strong> <span id="numeroDecuenta">-</span></p>
+            <p><strong>Saldo Total:</strong> <span id="saldoTotal">$0</span></p>
+            <p><strong>Fecha de Creación:</strong> <span id="fechaDecreacion">-</span></p>
+
+            <hr style="margin: 20px 0; border-color: #eee;">
+
+            <div class="heading">MENÚ</div>
+            <button class="prin-button" id="btnMovimiento">Movimientos</button>
+            <button class="prin-button" id="btnConsignar">Consignar</button>
+            <button class="prin-button" id="btnRetirar">Retirar</button>
+            <button class="prin-button" id="btnServicios">Servicios</button>
+            <button class="prin-button" id="btnExtractoBancario">Extracto Bancario</button>
+            <button class="prin-button" id="btnCertificacionBancaria">Certificación Bancaria</button>
+            <button class="prin-button cerrar" id="btnCerrarSesion">CERRAR SESIÓN</button>
+        </div>
+    </main>
+
+    <!-- Pantalla de Consignación -->
+    <div class="container hidden" id="consignacionScreen">
+        <div class="heading">CONSIGNAR DINERO</div>
+        <form id="consignacionForm" class="form">
+            <input required class="input" type="number" id="montoConsignacion" placeholder="Monto a consignar" min="1">
+            <textarea class="input" id="descripcionConsignacion" placeholder="Descripción (opcional)" rows="3"></textarea>
+            <button class="login-button" type="submit">CONSIGNAR</button>
+            <button type="button" class="login-button" id="cancelConsignacionBtn">CANCELAR</button>
+        </form>
+        <div id="consignacionMessage"></div>
+    </div>
+
+    <!-- Pantalla de Retiro -->
+    <div class="container hidden" id="retiroScreen">
+        <div class="heading">RETIRAR DINERO</div>
+        <form id="retiroForm" class="form">
+            <input required class="input" type="number" id="montoRetiro" placeholder="Monto a retirar" min="1">
+            <textarea class="input" id="descripcionRetiro" placeholder="Descripción (opcional)" rows="3"></textarea>
+            <button class="login-button" type="submit">RETIRAR</button>
+            <button type="button" class="login-button" id="cancelRetiroBtn">CANCELAR</button>
+        </form>
+        <div id="retiroMessage"></div>
+    </div>
+
+    <!-- Pantalla de Movimientos -->
+    <div class="container-prin hidden" id="movimientosScreen">
+        <div class="heading">MOVIMIENTOS</div>
+        <div class="form-prin">
+            <div id="movimientosList">
+                <p>No hay movimientos registrados.</p>
+            </div>
+            <button class="prin-button" id="volverMovimientosBtn">VOLVER</button>
+        </div>
+    </div>
+
+    <!-- Pantalla de Servicios -->
+    <div class="container hidden" id="serviciosScreen">
+        <div class="heading">PAGO DE SERVICIOS</div>
+        <form id="serviciosForm" class="form">
+            <select class="input" id="tipoServicio" required>
+                <option value="">Seleccionar servicio</option>
+                <option value="Electricidad">Electricidad</option>
+                <option value="Agua">Agua</option>
+                <option value="Gas">Gas</option>
+                <option value="Internet">Internet</option>
+                <option value="Teléfono">Teléfono</option>
+            </select>
+            <input required class="input" type="text" id="numeroServicio" placeholder="Número de servicio">
+            <input required class="input" type="number" id="montoServicio" placeholder="Monto a pagar" min="1">
+            <button class="login-button" type="submit">PAGAR</button>
+            <button type="button" class="login-button" id="cancelServiciosBtn">CANCELAR</button>
+        </form>
+        <div id="serviciosMessage"></div>
+    </div>
+
+    <div class="container-prin hidden" id="extractoScreen">
+        <div class="heading">EXTRACTO BANCARIO</div>
+        <div class="form-prin">
+            <p><strong>Titular de la Cuenta:</strong> <span id="extractoTitular">-</span></p>
+            <p><strong>Número de Cuenta:</strong> <span id="extractoNumeroCuenta">-</span></p>
+            <p><strong>Saldo Actual:</strong> <span id="extractoSaldo">-</span></p>
+            <hr style="margin: 20px 0; border-color: #eee;">
+            <div class="heading">RESUMEN DE MOVIMIENTOS</div>
+            <div id="extractoList">
+                <p>No hay movimientos registrados.</p>
+            </div>
+            <button class="prin-button" id="volverExtractoBtn">VOLVER</button>
+        </div>
+    </div>
+    
+    <div class="container-prin hidden" id="certificacionScreen">
+        <div class="heading">CERTIFICACIÓN BANCARIA</div>
+        <div class="form-prin">
+            <p>A quien corresponda,</p>
+            <p>Por medio de la presente, <strong><span id="certificacionTitular">-</span></strong>, con identificación <strong><span id="certificacionTipoId">-</span> <span id="certificacionNumeroId">-</span></strong>, certifica que es titular de la cuenta de ahorros <strong>No. <span id="certificacionNumeroCuenta">-</span></strong> en nuestra entidad bancaria.</p>
+            <p>El saldo actual de la cuenta a la fecha es de <strong><span id="certificacionSaldo">-</span></strong>.</p>
+            <p>La cuenta fue creada el <strong><span id="certificacionFechaCreacion">-</span></strong>.</p>
+            <p style="text-align: right; margin-top: 50px;">Atentamente,</p>
+            <p style="text-align: right;">BANK</p>
+            <button class="prin-button" id="volverCertificacionBtn">VOLVER</button>
+            <button class="prin-button" id="imprimirCertificacionBtn">IMPRIMIR</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
